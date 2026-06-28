@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>British Society & Culture — Interactive Mind Maps</title>
+<style>
+:root {
+  --bg: #f8f9fa;
+  --card-bg: #fff;
+  --text: #212529;
+  --text-secondary: #6c757d;
+  --primary: #0d6efd;
+  --primary-light: #e7f1ff;
+  --border: #dee2e6;
+  --shadow: 0 2px 8px rgba(0,0,0,0.08);
+  --shadow-hover: 0 4px 16px rgba(0,0,0,0.12);
+}
+[data-theme="dark"] {
+  --bg: #1a1a2e;
+  --card-bg: #16213e;
+  --text: #e0e0e0;
+  --text-secondary: #a0a0a0;
+  --primary: #4dabf7;
+  --primary-light: #1a2a4a;
+  --border: #2a2a4a;
+  --shadow: 0 2px 8px rgba(0,0,0,0.3);
+  --shadow-hover: 0 4px 16px rgba(0,0,0,0.4);
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; transition: background 0.3s, color 0.3s; }
+.container { max-width: 900px; margin: 0 auto; padding: 2rem 1.5rem; }
+header { text-align: center; margin-bottom: 2.5rem; }
+header h1 { font-size: 2rem; margin-bottom: 0.5rem; }
+header p { color: var(--text-secondary); font-size: 1.05rem; }
+.toolbar { display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 0.75rem; }
+.search-box { flex: 1; min-width: 200px; padding: 0.6rem 1rem; border: 1px solid var(--border); border-radius: 8px; background: var(--card-bg); color: var(--text); font-size: 0.95rem; outline: none; transition: border-color 0.2s; }
+.search-box:focus { border-color: var(--primary); }
+.search-box::placeholder { color: var(--text-secondary); }
+.theme-btn { padding: 0.6rem 1rem; border: 1px solid var(--border); border-radius: 8px; background: var(--card-bg); color: var(--text); cursor: pointer; font-size: 0.95rem; transition: all 0.2s; }
+.theme-btn:hover { border-color: var(--primary); color: var(--primary); }
+.section-title { font-size: 1.1rem; color: var(--text-secondary); margin: 1.5rem 0 0.75rem; padding-bottom: 0.5rem; border-bottom: 1px solid var(--border); display: flex; align-items: center; gap: 0.5rem; }
+.cards { display: grid; gap: 1rem; }
+.card { display: block; padding: 1.25rem 1.5rem; background: var(--card-bg); border: 1px solid var(--border); border-radius: 12px; text-decoration: none; color: var(--text); transition: all 0.25s; box-shadow: var(--shadow); position: relative; overflow: hidden; }
+.card:hover { transform: translateY(-2px); box-shadow: var(--shadow-hover); border-color: var(--primary); }
+.card::before { content: ''; position: absolute; left: 0; top: 0; bottom: 0; width: 4px; background: var(--primary); opacity: 0; transition: opacity 0.25s; }
+.card:hover::before { opacity: 1; }
+.card-title { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.35rem; }
+.card-meta { font-size: 0.85rem; color: var(--text-secondary); }
+.card-tag { display: inline-block; font-size: 0.75rem; padding: 0.15rem 0.5rem; border-radius: 4px; background: var(--primary-light); color: var(--primary); margin-top: 0.5rem; margin-right: 0.35rem; }
+.stats { display: flex; gap: 2rem; justify-content: center; margin: 1.5rem 0; flex-wrap: wrap; }
+.stat { text-align: center; }
+.stat-num { font-size: 1.8rem; font-weight: 700; color: var(--primary); }
+.stat-label { font-size: 0.85rem; color: var(--text-secondary); }
+footer { text-align: center; margin-top: 3rem; padding-top: 1.5rem; border-top: 1px solid var(--border); color: var(--text-secondary); font-size: 0.85rem; }
+footer a { color: var(--primary); text-decoration: none; }
+footer a:hover { text-decoration: underline; }
+.badges { display: flex; justify-content: center; gap: 0.5rem; margin-top: 1rem; flex-wrap: wrap; }
+.badge { display: inline-block; padding: 0.2rem 0.6rem; border-radius: 6px; font-size: 0.75rem; background: var(--primary-light); color: var(--primary); }
+.no-results { text-align: center; padding: 2rem; color: var(--text-secondary); display: none; }
+@media (max-width: 600px) {
+  header h1 { font-size: 1.5rem; }
+  .stats { gap: 1rem; }
+  .stat-num { font-size: 1.4rem; }
+}
+</style>
+</head>
+<body>
+<div class="container">
+  <header>
+    <h1>🇬🇧 British Society & Culture</h1>
+    <p>Interactive Mind Maps — 英国社会与文化交互式思维导图</p>
+    <div class="badges">
+      <span class="badge">5 Mind Maps</span>
+      <span class="badge">markmap</span>
+      <span class="badge">CC BY-NC-SA 4.0</span>
+    </div>
+  </header>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-num">5</div><div class="stat-label">思维导图</div></div>
+    <div class="stat"><div class="stat-num">6</div><div class="stat-label">知识章节</div></div>
+    <div class="stat"><div class="stat-num">100+</div><div class="stat-label">术语定义</div></div>
+  </div>
+
+  <div class="toolbar">
+    <input type="text" class="search-box" id="search" placeholder="🔍 搜索思维导图... / Search mind maps..." autocomplete="off">
+    <button class="theme-btn" id="theme-toggle">🌙</button>
+  </div>
+
+  <div class="section-title">📚 知识模块 / Knowledge Modules</div>
+  <div class="cards" id="cards">
+    <a class="card" href="html/英国地理与文化.html" data-keywords="geography culture topography climate population language family life holidays festivals england scotland wales northern ireland 英国 地理 文化 地形 气候 人口 家庭 节日">
+      <div class="card-title">🌍 英国地理与文化</div>
+      <div class="card-meta">Ch1: General Introduction</div>
+      <span class="card-tag">地形气候</span><span class="card-tag">人口语言</span><span class="card-tag">家庭生活</span><span class="card-tag">节日庆典</span>
+    </a>
+    <a class="card" href="html/英国历史.html" data-keywords="history roman norman feudalism revolution industrial chartism prehistory monarchy 英国 历史 罗马 诺曼 封建 革命 工业 宪章">
+      <div class="card-title">📜 英国历史</div>
+      <div class="card-meta">Ch2+Ch3: A Brief History I & II</div>
+      <span class="card-tag">罗马征服</span><span class="card-tag">诺曼征服</span><span class="card-tag">封建制度</span><span class="card-tag">资产阶级革命</span><span class="card-tag">工业革命</span><span class="card-tag">宪章运动</span>
+    </a>
+    <a class="card" href="html/英国政治体制.html" data-keywords="political system constitution monarchy parliament separation powers party conservative labour liberal 英国 政治 体制 宪法 君主 议会 政党">
+      <div class="card-title">🏛️ 英国政治体制</div>
+      <div class="card-meta">Ch4: Political System</div>
+      <span class="card-tag">君主立宪制</span><span class="card-tag">三权分立</span><span class="card-tag">政党制度</span>
+    </a>
+    <a class="card" href="html/英国教育体制.html" data-keywords="education primary secondary higher university oxford cambridge public school 英国 教育 体制 小学 中学 大学">
+      <div class="card-title">🎓 英国教育体制</div>
+      <div class="card-meta">Ch7: Education System</div>
+      <span class="card-tag">初等教育</span><span class="card-tag">中等教育</span><span class="card-tag">高等教育</span>
+    </a>
+    <a class="card" href="html/英国新闻媒体.html" data-keywords="news media press radio television digital broadcasting agency online bbc 英国 新闻 媒体 报刊 广播 电视">
+      <div class="card-title">📰 英国新闻媒体</div>
+      <div class="card-meta">Ch10: News Media</div>
+      <span class="card-tag">报刊</span><span class="card-tag">广播</span><span class="card-tag">数字广播</span><span class="card-tag">通讯社</span><span class="card-tag">网络媒体</span>
+    </a>
+  </div>
+  <div class="no-results" id="no-results">没有找到匹配的思维导图 / No matching mind maps found</div>
+
+  <footer>
+    <p>Built with <a href="https://markmap.js.org/" target="_blank">markmap</a> · Data from British Society & Culture course materials</p>
+    <p><a href="https://github.com/DavidHinton-xcpc/british-society-mindmaps" target="_blank">GitHub</a> · <a href="https://github.com/DavidHinton-xcpc/british-society-mindmaps/blob/main/DISCLAIMER.md">Disclaimer</a></p>
+  </footer>
+</div>
+
+<script>
+const toggle = document.getElementById('theme-toggle');
+const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+const savedTheme = localStorage.getItem('theme') || (prefersDark ? 'dark' : 'light');
+if (savedTheme === 'dark') { document.documentElement.setAttribute('data-theme', 'dark'); toggle.textContent = '☀️'; }
+toggle.addEventListener('click', () => {
+  const isDark = document.documentElement.getAttribute('data-theme') === 'dark';
+  document.documentElement.setAttribute('data-theme', isDark ? 'light' : 'dark');
+  toggle.textContent = isDark ? '🌙' : '☀️';
+  localStorage.setItem('theme', isDark ? 'light' : 'dark');
+});
+
+const searchBox = document.getElementById('search');
+const cards = document.querySelectorAll('.card');
+const noResults = document.getElementById('no-results');
+searchBox.addEventListener('input', () => {
+  const q = searchBox.value.toLowerCase().trim();
+  let visible = 0;
+  cards.forEach(card => {
+    const text = (card.textContent + ' ' + (card.dataset.keywords || '')).toLowerCase();
+    const show = !q || text.includes(q);
+    card.style.display = show ? '' : 'none';
+    if (show) visible++;
+  });
+  noResults.style.display = visible === 0 && q ? 'block' : 'none';
+});
+</script>
+</body>
+</html>
